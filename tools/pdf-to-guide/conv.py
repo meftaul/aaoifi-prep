@@ -368,7 +368,7 @@ def process_page(pno):
                 items.append({'t': 'table', 'rows': table_html(t, raw), 'y': tb.y0})
         for f in figitems:
             if container_rect.contains(pymupdf.Point(f['r'].x0 + 8, f['r'].y0 + 8)) and (inbox or not any(b.contains(f['r']) for b in boxes)):
-                items.append({'t': 'figure', 'img': f['img'], 'y': f['r'].y0, 'w': f['w'], 'h': f['h']})
+                items.append({'t': 'figure', 'img': f['img'], 'y': f['r'].y0, 'w': f['w'], 'h': f['h'], 'rect': list(f['r'])})
         if not inbox:
             for b in boxes:
                 sub = build(b, True)

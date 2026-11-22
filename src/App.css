@@ -340,11 +340,31 @@
   text-align: center;
 }
 
-.doc figure img {
+.doc figure.diagram {
+  overflow-x: auto;
+  padding: 8px 0;
+}
+
+.diagram-svg {
+  display: block;
   width: 100%;
+  min-width: 600px;
   height: auto;
-  background: #fff;
-  border-radius: 6px;
+  font-family: var(--sans);
+}
+
+.diagram-axis text {
+  fill: var(--dg-muted);
+  font-size: 6px;
+}
+
+.diagram-axis line,
+.diagram-axis path {
+  stroke: var(--dg-muted);
+}
+
+.diagram-grid line {
+  stroke: var(--border);
 }
 
 .doc .figcaption,

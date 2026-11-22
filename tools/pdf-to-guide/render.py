@@ -105,7 +105,10 @@ def render(items, inbox=False):
         elif t == 'tcap': h += f'<p class="table-caption">{subst(strip_strong(it["html"]))}</p>'
         elif t == 'figcap': h += f'<p class="figcaption">{subst(it["html"])}</p>'
         elif t == 'figure':
-            h += f'<figure><img src="{{BASE}}{it["img"]}" alt="" loading="lazy" width="{int(it["w"]*1.5)}" height="{int(it.get("h", 0)*1.5)}"></figure>'
+            name = it['img'].rsplit('.', 1)[0]
+            cap = next((x for x in items[i + 1:i + 2] if x['t'] == 'figcap'), None)
+            label = html.escape(re.sub(r'<[^>]+>', '', cap['html'])) if cap else ''
+            h += f'<figure class="diagram" data-diagram="{name}" role="img" aria-label="{label}"></figure>'
         elif t == 'table': h += table(it['rows'])
         elif t == 'box':
             if not it['items']: i += 1; continue
@@ -118,5 +121,6 @@ def render(items, inbox=False):
 items = merge(d)
 body = render(items)
 body = body.replace('&#x27;', "'")
-json.dump({'toc': toc, 'html': body}, open(OUT, 'w'), ensure_ascii=False)
+diagrams = json.load(open(f'out/{SLUG}.diagrams.json'))
+json.dump({'toc': toc, 'html': body, 'diagrams': diagrams}, open(OUT, 'w'), ensure_ascii=False)
 print('missing', len(set(missing)), 'len', len(body))

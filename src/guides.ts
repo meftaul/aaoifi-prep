@@ -1,8 +1,11 @@
+import type { DiagramSpec } from './diagrams'
+
 export type TocEntry = [level: 1 | 2, id: string, title: string]
 
 export interface GuideContent {
   toc: TocEntry[]
   html: string
+  diagrams: Record<string, DiagramSpec>
 }
 
 export interface Guide {
@@ -29,7 +32,7 @@ export const guides: Guide[] = [
       "Source: AAOIFI Shari'ah Standard No. (2), issued 27 Safar 1421 AH / 31 May 2000 (pp. 71–82 of the Shari'ah Standards volume).",
       'Prepared: November 2026 · English & Bangla · For study purposes — not a fatwa.',
     ],
-    load: () => import('./content/ss02.json').then((m) => m.default as GuideContent),
+    load: () => import('./content/ss02.json').then((m) => m.default as unknown as GuideContent),
   },
   {
     slug: 'ss-03',
@@ -45,7 +48,7 @@ export const guides: Guide[] = [
       'Compared with: IIFA Resolutions 51, 109, 133 · Bangladesh Bank (2009 Guidelines; 2026 Islamic Credit Card Guidelines) · SBP · BNM SAC.',
       "Prepared: November 2026 · This guide explains and compares; it is not a fatwa. For a ruling on a real case, consult your institution's Shari'ah Supervisory Committee or a qualified mufti.",
     ],
-    load: () => import('./content/ss03.json').then((m) => m.default as GuideContent),
+    load: () => import('./content/ss03.json').then((m) => m.default as unknown as GuideContent),
   },
 ]
 

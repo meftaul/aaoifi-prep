@@ -1,20 +1,22 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { drawDiagrams } from './diagrams'
 import type { Guide, GuideContent } from './guides'
-
-const IMG_BASE = `${import.meta.env.BASE_URL}guides/`
 
 export default function GuidePage({ guide }: { guide: Guide }) {
   const [content, setContent] = useState<GuideContent | null>(null)
   const [tocOpen, setTocOpen] = useState(false)
+  const docRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
     document.title = `${guide.standard} — ${guide.title} · AAOIFI Prep`
     guide.load().then(setContent)
   }, [guide])
 
-  // Jump to the hash target once the content has rendered.
+  // Draw the D3 diagrams, then jump to the hash target, once the content has rendered.
   useEffect(() => {
-    if (!content || !window.location.hash) return
+    if (!content) return
+    if (docRef.current) drawDiagrams(docRef.current, content.diagrams)
+    if (!window.location.hash) return
     document.getElementById(decodeURIComponent(window.location.hash.slice(1)))?.scrollIntoView()
   }, [content])
 
@@ -62,9 +64,8 @@ export default function GuidePage({ guide }: { guide: Guide }) {
 
         <article
           className="doc"
-          dangerouslySetInnerHTML={{
-            __html: content ? content.html.replaceAll('{BASE}', IMG_BASE) : '<p>Loading…</p>',
-          }}
+          ref={docRef}
+          dangerouslySetInnerHTML={{ __html: content ? content.html : '<p>Loading…</p>' }}
         />
       </div>
     </div>
