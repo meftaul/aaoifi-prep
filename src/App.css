@@ -210,6 +210,18 @@
   transition: transform 0.2s ease;
 }
 
+.chip::before {
+  content: '';
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  margin-right: 8px;
+  border-radius: 3px;
+  background: var(--c);
+  transform: rotate(45deg);
+  vertical-align: 1px;
+}
+
 .chip:hover {
   transform: translateY(-2px) rotate(-1.5deg);
 }
@@ -353,6 +365,19 @@
   padding-top: 10px;
   font-weight: 700;
   color: var(--text);
+}
+
+.arrow-svg {
+  display: inline-block;
+  vertical-align: -0.15em;
+}
+
+.back,
+.to-top {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
 }
 
 .card-cta .arrow {
@@ -979,7 +1004,7 @@
 .box {
   --c: var(--navy);
   --b: var(--box-navy);
-  --icon: '📌';
+  --shape: circle(50%);
   margin: 22px 0;
   padding: 16px 20px;
   border: 1.5px solid color-mix(in srgb, var(--c) 30%, transparent);
@@ -1011,9 +1036,9 @@
 .box-label {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 7px;
   margin-bottom: 6px;
-  padding: 3px 12px 3px 8px;
+  padding: 3px 12px 3px 10px;
   border-radius: 999px;
   background: var(--c);
   color: var(--bg);
@@ -1024,9 +1049,12 @@
 }
 
 .box-label::before {
-  content: var(--icon);
-  font-size: 1rem;
-  letter-spacing: 0;
+  content: '';
+  flex: none;
+  width: 9px;
+  height: 9px;
+  background: currentColor;
+  clip-path: var(--shape);
 }
 
 .box-label [lang='bn'] {
@@ -1037,44 +1065,44 @@
 .box-research {
   --c: var(--teal);
   --b: var(--box-teal);
-  --icon: '🔎';
+  --shape: circle(50%);
 }
 
 .box-bangla {
   --c: var(--green);
   --b: var(--box-green);
-  --icon: '🇧🇩';
+  --shape: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
 }
 
 .box-example {
   --c: var(--amber);
   --b: var(--box-amber);
-  --icon: '🧮';
+  --shape: inset(0 round 2px);
 }
 
 .box-warn {
   --c: var(--red);
   --b: var(--box-red);
-  --icon: '⚠️';
+  --shape: polygon(50% 0, 100% 100%, 0 100%);
 }
 
 .box-tip {
   --c: var(--purple);
   --b: var(--box-purple);
-  --icon: '💡';
+  --shape: polygon(50% 0, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
 }
 
 .box-evidence {
   --c: var(--brown);
   --b: var(--box-cream);
-  --icon: '📖';
+  --shape: inset(0 0 0 0);
 }
 
 .box-neutral,
 .box-plain {
   --c: var(--muted);
   --b: var(--box-gray);
-  --icon: '📝';
+  --shape: inset(30% 0 round 2px);
 }
 
 .box-evidence [lang='ar'] {

@@ -2,6 +2,7 @@ import './App.css'
 import { guideHref, guides } from './guides'
 import GuidePage from './GuidePage'
 import ThemeToggle from './ThemeToggle'
+import Arrow from './Arrow'
 
 const tones = ['violet', 'coral', 'mint', 'sun']
 
@@ -39,11 +40,11 @@ function Home() {
           </p>
           <ul className="chips">
             <li className="chip chip-violet">
-              🌐 English &amp; <span lang="bn">বাংলা</span>
+              English &amp; <span lang="bn">বাংলা</span>
             </li>
-            <li className="chip chip-coral">📊 Diagrams &amp; tables</li>
-            <li className="chip chip-mint">✍️ Practice questions</li>
-            <li className="chip chip-sun">📚 {guides.length} guides</li>
+            <li className="chip chip-coral">Diagrams &amp; tables</li>
+            <li className="chip chip-mint">Practice questions</li>
+            <li className="chip chip-sun">{guides.length} guides</li>
           </ul>
         </header>
 
@@ -62,7 +63,9 @@ function Home() {
                 </span>
                 <span className="guide-summary">{g.summary}</span>
                 <span className="card-cta">
-                  Start studying <span className="arrow">→</span>
+                  Start studying <span className="arrow">
+                    <Arrow />
+                  </span>
                 </span>
               </a>
             </li>

@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { drawDiagrams } from './diagrams'
 import type { Guide, GuideContent } from './guides'
 import ThemeToggle from './ThemeToggle'
+import Arrow from './Arrow'
 
 export default function GuidePage({ guide }: { guide: Guide }) {
   const [content, setContent] = useState<GuideContent | null>(null)
@@ -81,7 +82,7 @@ export default function GuidePage({ guide }: { guide: Guide }) {
     <div className="guide">
       <header className="topbar">
         <a href={import.meta.env.BASE_URL} className="back">
-          <span aria-hidden="true">←</span> All guides
+          <Arrow dir="left" size={15} /> All guides
         </a>
         <span className="topbar-title">{guide.title}</span>
         <div className="topbar-actions">
@@ -154,7 +155,7 @@ export default function GuidePage({ guide }: { guide: Guide }) {
         aria-label="Back to top"
         tabIndex={showTop ? 0 : -1}
       >
-        ↑
+        <Arrow dir="up" size={20} />
       </button>
     </div>
   )
