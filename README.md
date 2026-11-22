@@ -1,6 +1,10 @@
 # AAOIFI Prep
 
-Personal study companion for AAOIFI standards. Built with React, TypeScript and Vite.
+Bilingual (English & Bangla) study guides to the AAOIFI Shari'ah Standards. Built with React, TypeScript and Vite.
+
+Guides currently on the site: SS 2 (Debit, Charge and Credit Cards) and SS 3 (Procrastinating Debtor). Each guide
+opens at `?guide=ss-02`, `?guide=ss-03`. The content was converted from the study-guide PDFs with the scripts in
+`tools/pdf-to-guide/`.
 
 Live site: https://meftaul.github.io/aaoifi-prep/
 
